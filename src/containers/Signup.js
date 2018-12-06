@@ -37,15 +37,17 @@ class Signup extends Component {
   }
 
   render() {
+    const { username, password, password_confirmation, firstname, lastname } = this.state
+
     return (
       <>
         <h1>Sign Up</h1>
         <form onSubmit={ this.onSubmit }>
-          <input name="username" placeholder="Username" onChange={ this.onChange }/><br/>
-          <input type='password' name="password" placeholder="Password" onChange={ this.onChange }/><br/>
-          <input type='password' name="password_confirmation" placeholder="Password Confirmation" onChange={ this.onChange }/><br/>
-          <input name="firstname" placeholder="Firstname" onChange={ this.onChange }/><br/>
-          <input name="lastname" placeholder="Lastname" onChange={ this.onChange }/><br/>
+          <input name="username" placeholder="Username" value={ username } onChange={ this.onChange }/><br/>
+          <input type='password' name="password" placeholder="Password" value={ password } onChange={ this.onChange }/><br/>
+          <input type='password' name="password_confirmation" placeholder="Password Confirmation" value={ password_confirmation } onChange={ this.onChange }/><br/>
+          <input name="firstname" placeholder="Firstname" value={ firstname } onChange={ this.onChange }/><br/>
+          <input name="lastname" placeholder="Lastname" value={ lastname } onChange={ this.onChange }/><br/>
           <button type="submit">Signup</button>
         </form>
         <Link to='/login'>Log In</Link>

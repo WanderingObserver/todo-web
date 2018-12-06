@@ -34,12 +34,14 @@ class Login extends Component {
   }
 
   render() {
+    const { username, password } = this.state
+
     return (
       <>
         <h1>Log In</h1>
         <form onSubmit={ this.onSubmit }>
-          <input name="username" placeholder="Username" onChange={ this.onChange }/><br/>
-          <input type='password' name="password" placeholder="Password" onChange={ this.onChange }/><br/>
+          <input name="username" placeholder="Username" value={ username } onChange={ this.onChange }/><br/>
+          <input type='password' name="password" placeholder="Password" value={ password } onChange={ this.onChange }/><br/>
           <button type="submit">Login</button>
         </form>
         <Link to='/signup'>Sign Up</Link>
