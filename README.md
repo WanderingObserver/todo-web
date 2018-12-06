@@ -1,6 +1,16 @@
+## Quick Setup
+P.S. Some quick copy paste commands on the bottom. Will update this README.md in time. Thank You for your patience!
+
+```
+git clone https://github.com/SeeYouSpaceCowboy/todo-web.git
+cd todo-web
+npm install
+npm start
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Work-in-Progress (Available Scripts)
 
 In the project directory, you can run:
 
