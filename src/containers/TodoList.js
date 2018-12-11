@@ -3,9 +3,10 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { fetchUser } from '../actions/userActions'
-import { fetchTodos } from '../actions/todoActions'
+import { fetchTodos, createTodo, deleteTodo } from '../actions/todoActions'
 
 import Todo from '../components/Todo'
+import TodoForm from '../components/TodoForm'
 
 class TodoList extends Component {
   componentWillMount() {
@@ -14,13 +15,14 @@ class TodoList extends Component {
   }
 
   render() {
-    const { user, todos } = this.props
+    const { user, todos, createTodo } = this.props
 
     return (
       <div>
         <div>{ user.firstname } { user.lastname }</div>
         <h1>To Do</h1>
-        { todos.map(todo => <Todo key={ todo.id } todo={ todo }/>) }
+        <TodoForm createTodo={ createTodo }/>
+        { todos.map(todo => <Todo key={ todo.id } todo={ todo } deleteTodo={ this.props.deleteTodo }/>) }
       </div>
     )
   }
@@ -35,7 +37,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchUser,
-  fetchTodos
+  fetchTodos,
+  createTodo,
+  deleteTodo
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList)

@@ -1,16 +1,15 @@
 import React from 'react'
+import SubTodo from './SubTodo'
+import SubTodoForm from './SubTodoForm'
 
-const Todo = ({ todo: { title, description }}) =>
+const Todo = ({ todo: { id, title, description, sub_todos }, deleteTodo }) =>
   <div>
     <h1>{ title }</h1>
-    <p>{ description }</p>
+    <p>{ description }<button onClick={ () => deleteTodo(id) }>Complete Todo</button></p>
     <ul>
-      { renderSubTodos() }
+      { sub_todos.map(sub_todo => <SubTodo key={ sub_todo.id } sub_todo={ sub_todo }/>) }
     </ul>
+    <SubTodoForm/>
   </div>
-
-  function renderSubTodos() {
-    return <div>Sub Todo</div>
-  }
 
 export default Todo
