@@ -13,12 +13,10 @@ export const fetchTodos = () => {
   return dispatch => {
     fetch(`${ baseUrl }/todos`, data)
       .then(response => response.json())
-      .then(todos => {
-        dispatch({
-            type: 'FETCH_TODOS',
-            payload: todos
-        })
-      })
+      .then(todos => dispatch({
+          type: 'FETCH_TODOS',
+          payload: todos
+      }))
       .catch(err => err)
   }
 }

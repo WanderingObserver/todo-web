@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
-export default class SubTodoForm extends Component {
+import { createSubTodo } from '../actions/subtodoActions'
+
+class SubTodoForm extends Component {
   constructor() {
     super()
 
@@ -21,8 +25,10 @@ export default class SubTodoForm extends Component {
   }
 
   onSubmit(e) {
-    e.prevenDefault()
+    e.preventDefault()
 
+    const { todoId } = this.props
+    this.props.createSubTodo(this.state, todoId)
     this.setState({ description: "" })
   }
 
@@ -37,3 +43,9 @@ export default class SubTodoForm extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  createSubTodo
+}, dispatch)
+
+export default connect(null, mapDispatchToProps)(SubTodoForm)

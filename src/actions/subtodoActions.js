@@ -1,6 +1,6 @@
 const baseUrl = 'http://localhost:3005/api/v1'
 
-export const fetchTodos = () => {
+export const fetchSubTodos = todo => {
   let data = {
     method: 'GET',
     headers: {
@@ -11,19 +11,19 @@ export const fetchTodos = () => {
   }
 
   return dispatch => {
-    fetch(`${ baseUrl }/todos`, data)
+    fetch(`${ baseUrl }/todos/${ todo.id }/sub_todos`, data)
       .then(response => response.json())
-      .then(todos => {
+      .then(subTodos => {
         dispatch({
-            type: 'FETCH_TODOS',
-            payload: todos
+            type: 'FETCH_SUB_TODOS',
+            payload: subTodos
         })
       })
       .catch(err => err)
   }
 }
 
-export const createTodo = todo => {
+export const createSubTodo = (subTodo, todoId) => {
   let data = {
     method: 'POST',
     headers: {
@@ -31,21 +31,21 @@ export const createTodo = todo => {
       'Content-Type': 'application/json',
       'Authorization': sessionStorage.jwt
     },
-    body: JSON.stringify({ todo })
+    body: JSON.stringify({ sub_todo: subTodo })
   }
 
   return dispatch => {
-    fetch(`${ baseUrl }/todos`, data)
+    fetch(`${ baseUrl }/todos/${ todoId }/sub_todos`, data)
       .then(response => response.json())
-      .then(todo => dispatch({
-        type: 'CREATE_TODO',
-        payload: todo
+      .then(subTodo => dispatch({
+        type: 'CREATE_SUB_TODO',
+        payload: subTodo
       }))
       .catch(err => err)
   }
 }
 
-export const deleteTodo = id => {
+export const deleteSubTodo = (id, todoId) => {
   let data = {
     method: 'DELETE',
     headers: {
@@ -56,11 +56,11 @@ export const deleteTodo = id => {
   }
 
   return dispatch => {
-    fetch(`${ baseUrl }/todos/${ id }`, data)
+    fetch(`${ baseUrl }/todos/${ todoId }/sub_todos/${ id }`, data)
       .then(response => response.json())
-      .then(todo => dispatch({
-        type: 'DELETE_TODO',
-        payload: todo
+      .then(subTodo => dispatch({
+        type: 'DELETE_SUB_TODO',
+        payload: subTodo
       }))
       .catch(err => err)
   }

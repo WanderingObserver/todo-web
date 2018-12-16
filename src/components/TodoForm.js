@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
-export default class TodoForm extends Component {
+import { createTodo } from '../actions/todoActions'
+
+class TodoForm extends Component {
   constructor() {
     super()
 
@@ -43,3 +47,9 @@ export default class TodoForm extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  createTodo
+}, dispatch)
+
+export default connect(null, mapDispatchToProps)(TodoForm)

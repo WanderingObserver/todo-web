@@ -1,9 +1,9 @@
 import React from 'react'
 
-const SubTodo = ({ sub_todo: { description } }) =>
+const SubTodo = ({ sub_todo: { id, description }, todoId, deleteSubTodo }) =>
   <li>
     { description }
-    <button>Complete</button>
+    <button onClick={ () => deleteSubTodo(id, todoId) }>Complete</button>
   </li>
 
 export default SubTodo
